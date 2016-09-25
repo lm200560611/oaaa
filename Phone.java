@@ -14,21 +14,21 @@ public class Phone {
 
 	public void getIos(int id) {
 		lock.lock();
-
 		try {
 
 			while (number == 1) {
+
 				for (int i = 1; i <= 5; i++) {
 
 					System.out.println(Thread.currentThread().getName()
 							+ " ----ios" + "---" + i + "当前第" + id + "轮");
 				}
 				number = 2;
-				condition1.await();
+
 				condition2.signal();
+
 			}
-
-
+			condition1.await();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,12 +49,11 @@ public class Phone {
 					System.out.println(Thread.currentThread().getName()
 							+ " ----ios" + "---" + i + "当前第" + id + "轮");
 				}
-
 				number = 3;
-				condition2.await();
+
 				condition3.signal();
 			}
-
+			condition2.await();			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,12 +74,11 @@ public class Phone {
 					System.out.println(Thread.currentThread().getName()
 							+ " ----ios" + "---" + i + "当前第" + id + "轮");
 
-				}
-				number = 1;
-				condition3.await();
+				}number = 1;
+
 				condition1.signal();
 			}
-
+			condition3.await();			
 
 		} catch (Exception e) {
 			e.printStackTrace();
